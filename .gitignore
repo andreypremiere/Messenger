@@ -33,3 +33,16 @@ yarn-error.log*
 
 # Yarn Integrity file
 .yarn-integrity
+
+**openapi.json
+**generate_openapi.py
+**.env
+
+localstack_data/
+mongo_data/
+postgres_data/
+
+docker-compose.yml
+
+**/.idea/
+**/__pycache__/
