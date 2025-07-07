@@ -36,7 +36,19 @@ class UserResponse(UserBase):
     }
 
 
+class UserChat(UserBase):
+    user_id: UUID
+    displayed_nickname: Annotated[str | None, Query(max_length=140)] = None
+
+    model_config = {
+        "from_attributes": True  # заменяет orm_mode
+    }
+
+
 class UserVerify(BaseModel):
     user_id: str
     code: int
 
+
+class UserAuthenticate(BaseModel):
+    value: str

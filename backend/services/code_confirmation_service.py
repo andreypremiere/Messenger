@@ -10,16 +10,16 @@ class CodeConfirmationService:
     async def generate_code(self) -> int:
         return random.randint(100000, 999999)
 
-    async def create_temporary_code(self, user_id: str) -> bool:
+    async def create_temporary_code(self, user_id: str) -> int | None:
         code = await self.generate_code()
 
         try:
             await self.code_repo.create_temporary_code(user_id, code)
             print(f'Код был создан успешно. {code}')
-            return True
+            return code
         except Exception as e:
             print('Ошибка при попытке установить код для клиента.')
-            return False
+            return None
 
     async def get_temporary_code(self, user_id: str) -> int | None:
         try:

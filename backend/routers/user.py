@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 
 from schemas.token import Token
-from schemas.user import UserRegisterResponse, UserRegister, UserResponse, UserVerify
+from schemas.user import UserRegisterResponse, UserRegister, UserResponse, UserVerify, UserAuthenticate
 from services.user_services import UserService, get_user_service
 
 router = APIRouter()
@@ -24,4 +24,10 @@ async def verify_user_by_id(user_verify: UserVerify, user_service: UserService =
     token = await user_service.verify_user_by_id(user_verify)
     return token
 
+
+@router.post('/authenticate_user_by_any', response_model=UserResponse)
+async def verify_user_by_any(value: UserAuthenticate, user_service: UserService = Depends(get_user_service)):
+    user_response = await user_service.authenticate_user_by_any(value)
+    print(f'Полученный результат в verify_user: {user_response}')
+    return user_response
 
