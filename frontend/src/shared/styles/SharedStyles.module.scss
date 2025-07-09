@@ -1,0 +1,13 @@
+$authShadow: 0 0 10px 0 rgba(0,0,0,0.25);
+$authBorderRadius: 10px;
+
+@mixin authButton{
+    flex: 1;
+    padding: 10px;
+    background: #ffffff;
+    border-radius: $authBorderRadius;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+}

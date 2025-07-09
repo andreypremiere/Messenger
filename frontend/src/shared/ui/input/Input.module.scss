@@ -1,0 +1,16 @@
+@use '../../../shared/styles/SharedStyles.module.scss';
+
+.input {
+  margin-bottom: 16px;
+  padding: 10px;
+  border-radius: SharedStyles.$authBorderRadius;
+  box-shadow: SharedStyles.$authShadow;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  border:1px solid #ffffff;
+  &:active {
+    border-bottom: 1px solid #00A6FF;
+  }
+}

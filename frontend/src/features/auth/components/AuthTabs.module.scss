@@ -1,0 +1,29 @@
+@use "../../../shared/styles/SharedStyles.module.scss";
+
+.authTabs {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 0 auto;
+  gap: 10px;
+  background: none;
+}
+.tabs {
+  display: flex;
+  gap: 10px;
+}
+.tabs button {
+  @include SharedStyles.authButton;
+  border: none;
+}
+.tabs .active {
+  background: #fff;
+  box-shadow: SharedStyles.$authShadow;
+}
+.tabContent {
+  min-height: 120px;
+  box-shadow: SharedStyles.$authShadow;
+  border-radius: SharedStyles.$authBorderRadius;
+  background: #fff;
+  padding: 20px;
+}

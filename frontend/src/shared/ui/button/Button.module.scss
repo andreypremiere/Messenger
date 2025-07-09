@@ -1,0 +1,26 @@
+.button {
+  background: #00A6FF;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  transition: background 0.2s;
+  &:hover {
+    background: #0572ac;
+  }
+}
+
+// button{
+//   background: #47a2f3;
+//   color: #fff;
+//   padding: 10px;
+//   border: none;
+//   border-radius: 4px;
+//   font-weight: bold;
+//   cursor: pointer;
+//   font-size: 16px;
+// }
