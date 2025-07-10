@@ -45,6 +45,12 @@ class UserChat(UserBase):
     }
 
 
+class UserCredentials(BaseModel):
+    user_id: UUID
+    unique_nickname: Annotated[str, Query(max_length=80)]
+    displayed_nickname: Annotated[str, Query(max_length=140)]
+
+
 class UserVerify(BaseModel):
     user_id: str
     code: int
