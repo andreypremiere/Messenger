@@ -124,6 +124,21 @@ class UserService:
             print(f'Ошибка преобразования модели user_orm {user_orm} в UserResponse в get_user_by_any в user_service.')
             return None
 
+    async def find_users_by_value(self, value: UserAuthenticate):
+        try:
+            result = await self.user_repo.find_users_by_value(value.value)
+        except Exception as e:
+            print('Ошибка нахождения пользоателей по совпадению', e)
+            return None
+
+        try:
+            result = [UserResponse.from_orm(user_orm) for user_orm in result]
+            return result
+        except Exception as e:
+            print('Ошибка преобразования user_orm в user_response')
+            return None
+
+
 
 async def get_user_service(
         user_repo: UserRepository = Depends(get_user_repo),

@@ -31,6 +31,17 @@ class UserRepository:
         result = await self.session.execute(stmt)
         return result.scalar_one_or_none()
 
+    async def find_users_by_value(self, value):
+        stmt = select(UserORM).where(
+            or_(
+                UserORM.number_phone.ilike(f"%{value}%"),
+                UserORM.unique_nickname.ilike(f"%{value}%"),
+                UserORM.displayed_nickname.ilike(f"%{value}%")
+            )
+        )
+        result = await self.session.execute(stmt)
+        return result.scalars().all()
+
 
 async def get_user_repo(session: AsyncSession = Depends(get_session)) -> UserRepository:
     return UserRepository(session)

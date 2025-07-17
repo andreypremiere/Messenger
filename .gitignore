@@ -46,3 +46,12 @@ docker-compose.yml
 
 **/.idea/
 **/__pycache__/
+
+__pycache__/
+.idea/
+
+.idea/
+.vscode/
+
+access_keys_for_obj_storage.txt
+aws-local.bat
