@@ -54,3 +54,4 @@ __pycache__/
 .vscode/
 
 access_keys_for_obj_storage.txt
+aws-local.bat
