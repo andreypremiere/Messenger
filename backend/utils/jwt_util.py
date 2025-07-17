@@ -39,3 +39,12 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(o
         return user
     except JWTError:
         raise HTTPException(status_code=401)
+
+
+def get_current_user_from_token(token: str) -> UserCredentials:
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        user = UserCredentials.model_validate(payload)
+        return user
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid token")

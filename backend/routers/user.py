@@ -26,8 +26,13 @@ async def verify_user_by_id(user_verify: UserVerify, user_service: UserService =
 
 
 @router.post('/authenticate_user_by_any', response_model=UserResponse)
-async def verify_user_by_any(value: UserAuthenticate, user_service: UserService = Depends(get_user_service)):
+async def authenticate_user_by_any(value: UserAuthenticate, user_service: UserService = Depends(get_user_service)):
     user_response = await user_service.authenticate_user_by_any(value)
     print(f'Полученный результат в verify_user: {user_response}')
     return user_response
 
+
+@router.post('/find_users_by_value', response_model=list[UserResponse] | None)
+async def find_users_by_value(value: UserAuthenticate, user_service: UserService = Depends(get_user_service)):
+    response = await user_service.find_users_by_value(value)
+    return response

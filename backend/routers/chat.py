@@ -8,8 +8,6 @@ from utils.jwt_util import get_current_user
 router = APIRouter()
 
 
-# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNzQyYjAyNmYtNDAzOS00MjQzLWExNTQtODA3ZTVkZWM1YmEwIiwidW5pcXVlX25pY2tuYW1lIjoiYW5kcmV5X2RldiIsImRpc3BsYXllZF9uaWNrbmFtZSI6ImFuZHJleV9kZXYiLCJleHAiOjE3NTIyMjYxOTJ9.BJI2SHOHG6_m3cOMNs4-jjQAA_M4VbiV-Rey0mQUcxI
-
 @router.post('/create_chat', response_model=Chat | None)
 async def create_chat(chat: Chat, user: UserCredentials = Depends(get_current_user),
                       chat_service: ChatService = Depends(get_chat_service)):
