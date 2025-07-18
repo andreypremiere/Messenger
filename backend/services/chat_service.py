@@ -1,3 +1,5 @@
+from uuid import UUID
+
 from fastapi import Depends
 
 from repositories.chat_repository import ChatRepository, get_chat_repository
@@ -56,6 +58,28 @@ class ChatService:
             return None
 
         return result
+
+    async def get_chat_by_chat_id(self, chat_id: UUID):
+        pass
+
+    async def get_participants_by_chat_id(self, chat_id: UUID):
+        result = None
+        try:
+            result = await self.chat_repo.get_chat_by_chat_id(chat_id)
+        except Exception as e:
+            print('Ошибка получения чата по id чата', e)
+
+        if result is None:
+            return None
+
+        participants_id = [user['user_id'] for user in result['participants']]
+
+        return participants_id
+
+
+
+
+
 
 
 async def get_chat_service(chat_repo: ChatRepository = Depends(get_chat_repository)) -> ChatService:

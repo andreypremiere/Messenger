@@ -6,10 +6,10 @@ from database import get_mongo
 
 class MessageRepository:
     def __init__(self, mongo_db: AsyncIOMotorDatabase):
-        self.mongo_db = mongo_db
+        self.db = mongo_db
 
-    async def create_message(self):
-        pass
+    async def create_message(self, message_dict):
+        await self.db['messages'].insert_one(message_dict)
 
 
 async def get_message_repository(mongo: AsyncIOMotorDatabase = Depends(get_mongo)):

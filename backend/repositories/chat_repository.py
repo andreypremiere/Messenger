@@ -1,3 +1,5 @@
+from uuid import UUID
+
 from fastapi import Depends
 from motor.motor_asyncio import AsyncIOMotorDatabase
 from pymongo import DESCENDING
@@ -16,6 +18,12 @@ class ChatRepository:
         result = await self.db['chats'].find({
             "participants.user_id": user_id
         }).sort("created_at", DESCENDING).to_list(length=None)
+        return result
+
+    async def get_chat_by_chat_id(self, chat_id: UUID):
+        result = await self.db['chats'].find_one({
+            "_id": str(chat_id)
+        })
         return result
 
 

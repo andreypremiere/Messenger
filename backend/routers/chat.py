@@ -1,3 +1,5 @@
+from uuid import UUID
+
 from fastapi import APIRouter, Depends
 
 from schemas.chat import Chat
@@ -20,3 +22,9 @@ async def get_user_chats(user: UserCredentials = Depends(get_current_user),
                          chat_service: ChatService = Depends(get_chat_service)):
     list_chats = await chat_service.get_user_chats(user)
     return list_chats
+
+@router.get('/get_participants_by_chat_id/{chat_id}')
+async def get_participants_by_chat_id(chat_id: UUID, user: UserCredentials = Depends(get_current_user),
+                      chat_service: ChatService = Depends(get_chat_service)):
+    result = await chat_service.get_participants_by_chat_id(chat_id)
+    return result
